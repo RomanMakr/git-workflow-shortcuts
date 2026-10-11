@@ -148,7 +148,7 @@ Create a branch, make changes, then commit and push:
 gcb feature-portfolio
 # Make your changes
 gaa
-gitcommit "Add portfolio screen"
+commit "Add portfolio screen"
 push_current_branch
 ```
 
