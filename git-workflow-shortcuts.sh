@@ -109,6 +109,17 @@ gmo() {
     git merge "origin/$branch" "$@"
 }
 
+# Fetch origin and merge its main branch into the current branch.
+gmerge_main() {
+    git fetch origin || return
+    git merge origin/main "$@"
+}
+
+# Create a pull request targeting main with generated title and description.
+gpr() {
+    gh pr create --base main --fill "$@"
+}
+
 # Copy text or standard input to the system clipboard.
 clipcopy() {
     if [[ $# -gt 0 ]]; then

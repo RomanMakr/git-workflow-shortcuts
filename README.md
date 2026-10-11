@@ -112,6 +112,8 @@ integrated terminal has focus.
 | `gbD_remote branch-name` | Delete a branch from `origin` | `gbD_remote feature-portfolio` |
 | `gbD_force branch-name` | Force-delete a local branch | `gbD_force feature-portfolio` |
 | `gmo` | Fetch `origin` and merge `origin/<current-branch>` into the current branch | `gmo` |
+| `gmerge_main` | Fetch `origin` and merge `origin/main` into the current branch | `gmerge_main` |
+| `gpr` | Create a pull request targeting `main` with GitHub CLI's generated title and description | `gpr` |
 | `clipcopy [text]` | Copy text, or piped standard input, to the system clipboard | `printf 'hello' \| clipcopy` |
 | `clippaste` | Write the system clipboard contents to standard output | `clippaste` |
 | `gs` | Show Git status | `gs` |
@@ -161,5 +163,20 @@ push_current_branch
 - `gbD` only deletes a branch Git considers merged. `gbD_force` can discard unmerged work; use it carefully.
 - `gbD_remote` deletes the named branch from the `origin` remote.
 - `gmo` fetches `origin` before merging the remote-tracking branch with the current branch's name.
+- `gmerge_main` fetches `origin` before merging `origin/main` into the current branch.
+- `gpr` runs `gh pr create --base main --fill`; it requires GitHub CLI (`gh`) to be installed and authenticated, and the current branch to be pushed.
 - These are Bash functions, not standalone programs. They are available after loading the script through `~/.bashrc`.
 - Prefer hyphens in branch names, such as `feature-portfolio`, rather than spaces.
+
+### Troubleshooting `gpr` authentication
+
+If `gpr` asks you to run `gh auth login`, authenticate with HTTPS and the browser:
+
+```bash
+gh auth login -h github.com -p https -w
+gh auth status
+```
+
+If SSH login reports `HTTP 404` while checking `/user/keys`, use HTTPS login
+instead. `gpr` does not require an SSH key; the current branch must be pushed
+to GitHub before creating its pull request.
