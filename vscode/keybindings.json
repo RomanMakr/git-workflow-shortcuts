@@ -1,0 +1,41 @@
+[
+    {
+        "key": "ctrl+a",
+        "command": "workbench.action.terminal.selectAll",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "workbench.action.terminal.copySelection",
+        "when": "terminalFocus && terminalTextSelected"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0013"
+        },
+        "when": "terminalFocus && !terminalTextSelected"
+    },
+    {
+        "key": "ctrl+v",
+        "command": "workbench.action.terminal.paste",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0013"
+        },
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+x",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0015"
+        },
+        "when": "terminalFocus"
+    }
+]
